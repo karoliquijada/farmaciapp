@@ -28,7 +28,7 @@ class Nombre_Cliente(models.Model):
         return (self.primer_nombre, self.primer_apellido)
     
     class Meta:
-        db_table = 'Nombre'
-        verbose_name = 'Nombre'
-        verbose_name_plural = 'Nombres'
+        db_table = 'Nombre_Cliente'
+        verbose_name = 'Nombre_Cliente'
+        verbose_name_plural = 'Nombres_Clientes'
         ordering = ['cedula']
