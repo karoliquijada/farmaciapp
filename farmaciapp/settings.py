@@ -40,12 +40,13 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    'compras.apps.ComprasConfig',
-    'ventas.apps.VentasConfig',
-    'reportes.apps.ReportesConfig',
+    'compras',
+    'ventas',
+    'reportes',
     'login.apps.LoginConfig',
     'productos',
     'proveedores',
+    'clientes',
 ]
 
 
