@@ -1,18 +1,39 @@
 from django.contrib import admin
-from compras.models import Compra
-from proveedores.models import Proveedor
-from productos.models import Producto
-from clientes.models import Nombre_Cliente, Cliente
-from ventas.models import Metodo_de_pago, Tasa, Impuesto
-from reportes.models import Nota_de_entrega, Factura
+from compras.models import *
+from proveedores.models import *
+from productos.models import *
+from clientes.models import *
+from ventas.models import *
+from reportes.models import *
 # Register your models here.
 
-admin.site.register(Compra)
-admin.site.register(Producto)
+#cliente
 admin.site.register(Nombre_Cliente)
 admin.site.register(Cliente)
-admin.site.register(Metodo_de_pago)
-admin.site.register(Tasa)
-admin.site.register(Impuesto)
+
+#compras
+admin.site.register(Nombre_Supervisor)
+admin.site.register(Compra)
+admin.site.register(MN_Compra_Producto)
+admin.site.register(MN_Compra_Proveedor)
+
+#productos
+admin.site.register(Categoria_Producto)
+admin.site.register(Producto)
+admin.site.register(MN_Subcategoria_Producto)
+
+#proveedores
+admin.site.register(Proveedor)
+
+#reportes
 admin.site.register(Nota_de_entrega)
+admin.site.register(MN_NotaDeEntrega_MetodoDePago)
+admin.site.register(MN_NotaDeEntrega_Producto)
 admin.site.register(Factura)
+admin.site.register(MN_Factura_Producto)
+admin.site.register(MN_Factura_MetodoDePago)
+
+#ventas
+admin.site.register(Impuesto)
+admin.site.register(Tasa)
+admin.site.register(Metodo_de_pago)
