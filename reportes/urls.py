@@ -1,7 +1,8 @@
 from django.urls import path
 
 from . import views
+from reportes.views import *
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("reporte/", ReporteListView.as_view(), name="reporte"),
 ]
