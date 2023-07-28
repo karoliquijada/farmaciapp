@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
-
-def index(request):
-    return render(request, "registration/login.html")
 
 @login_required
-def dashboard(request):
-    return render(request, "dashboard.html")
+def index(request):
+     return render(request, "index.html")
+
+def salir(request):
+    logout(request)
+    return redirect('/')

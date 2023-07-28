@@ -5,4 +5,4 @@ from ventas.models import *
 
 class VentaListView(ListView):
     model = Metodo_de_pago
-    template_name = 'index.html',
+    template_name = 'venta.html',
