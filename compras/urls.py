@@ -3,5 +3,6 @@ from compras.views import *
 from . import views
 
 urlpatterns = [
-    path("compra/", ComprasListView.as_view(), name="compra"),
+    path("compra/", CompraView.as_view(), name="compra"),
+    path("historial/", ComprasHistorialListView.as_view(), name="historial"),
 ]
