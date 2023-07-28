@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from reportes.models import *
+from django.views.generic import ListView
 
-
-def index(request):
-    return HttpResponse("Hello, reportes")
+class ReporteListView(ListView):
+    model = Factura
+    template_name = 'reporte.html'
