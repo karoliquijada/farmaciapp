@@ -1,4 +1,4 @@
-{% extends 'common/base.html' %} {% block content %}
+{% extends 'common/base.html' %} {% block page_title %} Historial de compras {% endblock %} {% block content %}
 
 <br />
 <!-- Listo de productos que se están agregando a la compra -->
@@ -23,13 +23,16 @@
           {% for compra in compra_list %}
           <tr>
             <td>{{ compra.id}}</td>
-            <td>Lorem ipsum dolor sgitit amet consectetur, adipisicing elit.</td>
-            <td>{{ compra.proveedor}}</td>
-            <td>{{ compra.supervisor}}</td>
+            <td>{{ compra.descripcion}}</td>
+            <td>{{ compra.total}}</td>
+            <td>{{ compra.proveedor_id}}</td>
             <td>{{ compra.fecha_de_compra}}</td>
-            <td>Ver Detalles | Borrar</td>
+            <td>
+              <a href="{% url 'editar_compra' compra.pk %}" class="btn btn-primary"">Editar</a> |
+              <a href="{% url 'eliminar_compra' compra.pk %}" class="btn btn-danger">Eliminar</a>
+            </td>
           </tr>
-        {% endfor %}
+          {% endfor %}
         </tbody>
       </table>
     </div>
