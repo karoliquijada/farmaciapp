@@ -12,10 +12,10 @@ admin.site.register(Nombre_Cliente)
 admin.site.register(Cliente)
 
 #compras
-admin.site.register(Nombre_Supervisor)
+#admin.site.register(Nombre_Supervisor)
 admin.site.register(Compra)
-admin.site.register(MN_Compra_Producto)
-admin.site.register(MN_Compra_Proveedor)
+#admin.site.register(MN_Compra_Producto)
+#admin.site.register(MN_Compra_Proveedor)
 
 #productos
 admin.site.register(Categoria_Producto)
