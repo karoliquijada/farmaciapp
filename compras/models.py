@@ -12,7 +12,8 @@ class Nombre_Supervisor(models.Model):
     segundo_apellido = models.CharField(max_length=200, null=True, blank=True)
  
     def __str__(self):
-        return (self.primer_nombre, self.primer_apellido)
+        supervisor = self.primer_nombre + ' ' +self.primer_apellido
+        return supervisor
     
     class Meta:
         db_table = 'Nombre_Supervisor'
@@ -20,15 +21,17 @@ class Nombre_Supervisor(models.Model):
         verbose_name_plural = 'Nombres_Supervisores'
         ordering = ['cedula']
 
+
 class Compra(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     fecha_de_compra = models.DateField(auto_now_add=True, verbose_name='Fecha')
-    supervisor_cedula = models.ForeignKey(Nombre_Supervisor, on_delete = models.CASCADE, verbose_name='Supervisor_Cedula')
-    inversion = models.DecimalField(default=0.00, max_digits=20, decimal_places=2)
-
-    def __str__(self):
-        return self.id
+    supervisor_cedula = models.ForeignKey(Nombre_Supervisor, on_delete=models.CASCADE, verbose_name='Supervisor_Cedula')
+    #producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name='Producto', default=None, null=True)
+    productos = models.ManyToManyField(Producto, verbose_name='Productos', related_name='compras')
     
+    def __str__(self):
+        return str(self.id)
+
     class Meta:
         db_table = 'Compra'
         verbose_name = 'Compra'

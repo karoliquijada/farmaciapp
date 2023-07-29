@@ -47,6 +47,7 @@ LOCAL_APPS = [
     'productos',
     'proveedores',
     'clientes',
+    'categoria',
 ]
 
 
