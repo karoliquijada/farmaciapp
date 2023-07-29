@@ -1,0 +1,140 @@
+{% extends 'common/base.html' %} {% block content %}
+<!-- Datos del supervisor que vienen de la bdd -->
+<div class="form-row">
+  <div class="form-group col-lg-4 col-12">
+    <label for="supervisor_cedula">Código del supervisor:</label>
+    <input type="number" name="supervisor_cedula" id="supervisor_cedula" class="form-control" value="{{ datos_supervisor.codigo }}"/>
+  </div>
+  <div class="form-group col-lg-4 col-12">
+    <label for="nombre_completo">Nombre completo:</label>
+    <input type="text" id="nombre_completo" name="" class="form-control" value="{{ datos_supervisor.nombre_completo }}"/>
+  </div>
+</div>
+
+<hr />
+<!-- Datos de la compra que se cargan manualmente -->
+<form id="compraForm">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-lg-6 col-sm-12">
+      <label for="proveedor">Proveedor:</label>
+      <select id="proveedor" class="form-control" required>
+        {% for proveedor in proveedores %}
+        <option value="{{ proveedor.id }}">{{ proveedor.nombre }}</option>
+        {% endfor %}
+        <option value="nuevo_proveedor">Seleccionar proveedor</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-lg-6 col-sm-12">
+      <label for="descripcion">Descripcion de la compra:</label>
+      <input type="text" id="description" class="form-control" required />
+    </div>
+    <!-- Selector de fecha -->
+    <div class="form-group col-lg-4 col-sm-12">
+      <label for="fecha">Fecha de compra:</label>
+      <input type="date" id="fecha" class="form-control" required />
+    </div>
+  </div>
+  <div class="form-row">
+    <!-- Otros campos existentes -->
+
+    <div class="form-group col-lg-6 col-sm-12">
+      <label for="producto">Producto:</label>
+      <select id="producto" class="form-control" required>
+        {% for producto in productos %}
+        <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+        {% endfor %}
+        <option value="nuevo_producto">Seleccionar producto</option>
+      </select>
+    </div>
+    <div class="form-group col-lg-3 col-sm-12">
+      <label for="cantidad">Unidades adquiridas:</label>
+      <input type="number" id="cantidad" class="form-control" required />
+    </div>
+    <div class="form-group col-lg-3 col-sm-12">
+      <label for="precio">Precio Unitario:</label>
+      <input type="number" id="precio" step="0.01" class="form-control" required />
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" id="agregarProducto">Agregar Producto</button>
+</form>
+
+<br />
+<!-- Listo de productos que se están agregando a la compra -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Listado de productos agregados</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Unidades adquiridas</th>
+            <th>Precio unitario</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-danger btn-icon-split" id="confirmarCompra">
+  <span class="icon text-white-50">
+    <i class="fas fa-trash"></i>
+  </span>
+  <span class="text">Cancelar</span>
+</button>
+<button type="button" class="btn btn-success btn-icon-split" id="confirmarCompra">
+  <span class="icon text-white-50">
+    <i class="fas fa-check"></i>
+  </span>
+  <span class="text">Confirmar compra</span>
+</button>
+
+<script>
+  // Código para manejar la actualización de la tabla al agregar productos
+  document.addEventListener("DOMContentLoaded", function () {
+    // Función para agregar una nueva fila a la tabla
+    function agregarFilaTabla(producto, cantidad, precio) {
+      const fila = `
+                <tr>
+                    <td>${producto}</td>
+                    <td>${cantidad}</td>
+                    <td>${precio}</td>
+                </tr>
+            `;
+      const tbody = document.querySelector("#dataTable tbody");
+      tbody.insertAdjacentHTML("beforeend", fila);
+    }
+
+    // Obtener el botón "agregarProducto" por su ID
+    const btnAgregarProducto = document.getElementById("agregarProducto");
+
+    // Agregar el evento de clic al botón
+    btnAgregarProducto.addEventListener("click", function () {
+      // Obtener los valores del formulario
+      const productoNombre = document.querySelector("#producto option:checked").textContent;
+      const cantidad = document.querySelector("#cantidad").value;
+      const precio = document.querySelector("#precio").value;
+      // Verificar que los campos no estén vacíos o sean nulos
+      if (productoNombre && cantidad && precio) {
+        // Agregar la fila a la tabla
+        agregarFilaTabla(productoNombre, cantidad, precio);
+
+        // Limpia los campos del formulario para agregar otro producto
+        document.querySelector("#producto").selectedIndex = 0;
+        document.querySelector("#cantidad").value = "";
+        document.querySelector("#precio").value = "";
+      } else {
+        // Mostrar una alerta o mensaje de error si algún campo está vacío o es nulo
+        alert("Por favor, complete todos los campos antes de agregar el producto.");
+      }
+    });
+  });
+</script>
+{% endblock %}
