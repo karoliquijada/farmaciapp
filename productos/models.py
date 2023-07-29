@@ -17,15 +17,15 @@ class Categoria_Producto(models.Model):
 class Producto(models.Model):
     codigo = models.CharField(primary_key=True, max_length=5, unique=True, verbose_name='Codigo')
     nombre = models.CharField(max_length=150, verbose_name='Nombre')
-    fecha_de_vencimiento = models.DateField()
+    fecha_de_vencimiento = models.DateField(auto_now_add=True, verbose_name='Fecha', blank=True, null=True)
     precio = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     cantidad = models.PositiveIntegerField(default=0)
-    descuento = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, null=True, blank=True)
-    exento = models.BooleanField(null=True, blank=True)
+    descuento = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, blank=True, null=True)
+    exento = models.BooleanField()
     imagen_de_producto = models.ImageField(upload_to='img_product', null=True, blank=True, verbose_name='Imagen')  
 
     def __str__(self):
-        return self.nombre
+        return self.codigo
     
     class Meta:
         db_table = 'Producto'
