@@ -1,4 +1,9 @@
-{% extends 'common/base.html' %} {% block content %}
+{% extends 'common/base.html' %} 
+
+{% block page_title %}Registrar una compra{% endblock %}
+
+
+{% block content %}
 <!-- Datos del supervisor que vienen de la bdd -->
 <div class="form-row">
   <div class="form-group col-lg-4 col-12">
@@ -11,7 +16,6 @@
   </div>
 </div>
 
-<hr />
 <!-- Datos de la compra que se cargan manualmente -->
 <form id="compraForm">
   {% csrf_token %}
