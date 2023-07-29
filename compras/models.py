@@ -26,9 +26,8 @@ class Compra(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     fecha_de_compra = models.DateField(auto_now_add=True, verbose_name='Fecha')
     supervisor_cedula = models.ForeignKey(Nombre_Supervisor, on_delete=models.CASCADE, verbose_name='Supervisor_Cedula')
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name='Producto', default=None, null=True)
-    cantidad = models.PositiveIntegerField(verbose_name='Cantidad')
-    valor_unitario = models.DecimalField(default=0.00, max_digits=20, decimal_places=2, verbose_name='Valor_Unitario')
+    #producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name='Producto', default=None, null=True)
+    productos = models.ManyToManyField(Producto, verbose_name='Productos', related_name='compras')
     
     def __str__(self):
         return str(self.id)
