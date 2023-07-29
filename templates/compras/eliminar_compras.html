@@ -1,0 +1,18 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Confirmar eliminación</h1>
+    <p>¿Estás seguro de que deseas eliminar la compra con ID {{ compra.id }}?</p>
+    <p>Fecha de compra: {{ compra.fecha_de_compra }}</p>
+    <p>Proveedor: {{ compra.proveedor }}</p>
+    <p>Descripción: {{ compra.descripcion }}</p>
+    <p>Total: {{ compra.total }}</p>
+
+    <form action="{% url 'eliminar_compra' compra.pk %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Eliminar</button>
+      <a href="{% url 'historial' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}
