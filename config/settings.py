@@ -39,7 +39,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'django.contrib.humanize',
-    'django_weasyprint',
+
 ]
 
 LOCAL_APPS = [
