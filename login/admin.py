@@ -8,7 +8,6 @@ from reportes.models import *
 # Register your models here.
 
 #cliente
-admin.site.register(Nombre_Cliente)
 admin.site.register(Cliente)
 
 #compras
