@@ -148,13 +148,15 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                     <thead>
-                                        <th>Productos</th>   
+                                        <th>Productos</th>  
+                                        <th>Codigo</th> 
                                     </thead>
         
                                     <tbody>
                                         {% for c in subcategoria1_object_list %}
                                             <tr>
-                                                <td>{{ c.codigo_producto.nombre }}</td> 
+                                                <td>{{ c.codigo_producto.nombre}}</td> 
+                                                <td>{{ c.codigo_producto.codigo }}</td> 
                                             </tr>
                                         {% endfor %}                             
                                     </tbody>
@@ -172,13 +174,15 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                     <thead>
-                                        <th>Productos</th>  
+                                        <th>Productos</th> 
+                                        <th>Codigo</th>
                                     </thead>
         
                                     <tbody>
                                         {% for c in subcategoria2_object_list %}
                                         <tr>
-                                            <td>{{ c.codigo_producto.nombre }}</td> 
+                                            <td>{{ c.codigo_producto.nombre }}</td>    
+                                            <td>{{ c.codigo_producto.codigo }}</td> 
                                         </tr>
                                         {% endfor %}                            
                                     </tbody>
@@ -197,13 +201,14 @@
                                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                     <thead>
                                         <th>Productos</th>  
+                                        <th>Codigo</th>
                                     </thead>
         
                                     <tbody>
                                             {% for c in subcategoria3_object_list %}
                                             <tr>
-                                                <td>{{ c.codigo_producto.nombre }}</td> 
-                                            </tr>
+                                                <td>{{ c.codigo_producto.nombre }}</td>    
+                                                <td>{{ c.codigo_producto.codigo }}</td>                                          </tr>
                                             {% endfor %}                                
                                     </tbody>
                                 </table>

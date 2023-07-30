@@ -21,7 +21,7 @@ class Producto(models.Model):
     precio = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     cantidad = models.PositiveIntegerField(default=0)
     descuento = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, blank=True, null=True)
-    exento = models.BooleanField()
+    exento = models.BooleanField(blank=True, null=True)
     imagen_de_producto = models.ImageField(upload_to='img_product', null=True, blank=True, verbose_name='Imagen')  
 
     def __str__(self):

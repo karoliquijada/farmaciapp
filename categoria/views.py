@@ -19,7 +19,7 @@ class CategoriaListView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Categoria'
         context['categoria_object_list'] = Categoria_Producto.objects.all()
-        context['subcategoria1_object_list'] = MN_Subcategoria_Producto.objects.filter(categoria=' Vitaminas y Productos Naturales')
+        context['subcategoria1_object_list'] = MN_Subcategoria_Producto.objects.filter(categoria='Vitaminas y Productos Naturales')
         context['subcategoria2_object_list'] = MN_Subcategoria_Producto.objects.filter(categoria='Dolor General')
         context['subcategoria3_object_list'] = MN_Subcategoria_Producto.objects.filter(categoria='Salud Respiratoria y Gripe')
         return context
